@@ -1,0 +1,3 @@
+amblers.Input = function(){
+  
+};
