@@ -58,16 +58,19 @@ amblers.Events = function(){
     }
   };
 
+  var subscribe_event_name = function(subscribers, event_name){
+    if(subscribers.forEach){
+      subscribers.forEach(function(subscriber){
+        subscribe(event_name, subscriber);
+      });
+    }else{
+      subscribe(event_name, subscribers);
+    } 
+  };
+
   var subscribe_collection = function(collection){
-    for(event_name in collection){
-      var subscribers = collection[event_name];
-      if(subscribers.forEach){
-        subscribers.forEach(function(subscriber){
-          subscribe(event_name, subscriber);
-        });
-      }else{
-        subscribe(event_name, subscribers);
-      }
+    for(var event_name in collection){
+      subscribe_event_name(collection[event_name], event_name); 
     }
   };
 
